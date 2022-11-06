@@ -14,10 +14,17 @@ a:visited {
 .header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  height: 80px;
+  min-height: 80px;
   padding: 0 135px;
   border-bottom: 1px solid #BDBDBD;
+}
+@media screen and (max-width: 1050px) {
+  .header {
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
 .menu {
   display: flex;
@@ -27,6 +34,14 @@ a:visited {
   font-weight: 600;
   gap: 30px;
   padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .header__menu {
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+  }
 }
 .menu__item {
   font-size: inherit;
@@ -39,6 +54,7 @@ a:visited {
 .button_callback {
   width: 130px;
   height: 42px;
+  padding: 10px;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -49,6 +65,7 @@ a:visited {
   background-color: #18B5DC;
   border-color: #18B5DC;
   cursor: pointer;
+  border-style: none;
 }
 .section {
   text-align: center;
@@ -82,37 +99,45 @@ a:visited {
 }
 .row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 30px;
-  height: 333px;
+  flex-wrap: wrap;
+  
 }
 .team-member {
   text-align: left;
+  perspective: 1000px;
+  width: max-content;
+  height: 100%;
 }
 .team-member__photo {
-  position: relative;
   height: 270px;
   width: 270px;
   margin-bottom: 20px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  position: relative;  
 }
 .team-member__photo-front {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   position: absolute;
 }
 .team-member__photo_back {
-  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #18B5DC;
   gap: 4px;
-  opacity: 0;
+  background-color: #18B5DC;  
+  backface-visibility: hidden;  
+  transform: rotateY(180deg);
 }
-.team-member__photo_back:hover {
-  opacity: 100%;
+.team-member:hover .team-member__photo{
+  transform: rotateY(180deg);
 }
-
 .team-member__name {
   font-size: 18px;
   font-weight: 700;
@@ -126,6 +151,7 @@ a:visited {
   height: 42px;
   font-size: 24px;
   text-align: center;
+  line-height: 1.7;
 }
 
 .fa.fa_blue {
